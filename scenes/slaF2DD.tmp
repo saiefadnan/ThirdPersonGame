@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://bktaf5wvs4vtv"]
+
+[ext_resource type="Script" path="res://scripts/slash.gd" id="1_04ort"]
+[ext_resource type="ArrayMesh" uid="uid://dwkr70u4eo6ep" path="res://assets/third_person_controller_assets/models/slash.obj" id="1_fof4m"]
+[ext_resource type="Shader" uid="uid://mlf30y07bomw" path="res://scripts/slash.tres" id="2_xcxr8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51ky5"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_xcxr8")
+shader_parameter/color = Color(0.109804, 0.92549, 1, 1)
+shader_parameter/gradient_1_slider = 0.86
+shader_parameter/gradient_2_slider = 6.0
+
+[sub_resource type="Animation" id="Animation_wbben"]
+resource_name = "slash"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slash:surface_material_override/0:shader_parameter/gradient_1_slider")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.86, 0.025, -0.435]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slash:surface_material_override/0:shader_parameter/gradient_2_slider")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [6.0, 5.875, 5.72]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:play")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fw3u8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slash:surface_material_override/0:shader_parameter/gradient_1_slider")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.86]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slash:surface_material_override/0:shader_parameter/gradient_2_slider")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:play")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnjup"]
+_data = {
+"RESET": SubResource("Animation_fw3u8"),
+"slash": SubResource("Animation_wbben")
+}
+
+[node name="slash" type="Node3D"]
+script = ExtResource("1_04ort")
+
+[node name="Slash" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0636961, 0, 0.378252)
+mesh = ExtResource("1_fof4m")
+surface_material_override/0 = SubResource("ShaderMaterial_51ky5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pnjup")
+}

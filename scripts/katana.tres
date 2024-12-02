@@ -1,0 +1,31 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://cmj4th602dw81"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_qff6j"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+default_value = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform vec4 ColorParameter : source_color = vec4(0.076836, 0.076836, 0.076836, 1.000000);
+
+
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = ColorParameter;
+
+
+// Output:0
+	EMISSION = vec3(n_out2p0.xyz);
+
+
+}
+"
+flags/unshaded = true
+nodes/fragment/0/position = Vector2(400, -40)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_qff6j")
+nodes/fragment/2/position = Vector2(79.0832, 54.4608)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 5)

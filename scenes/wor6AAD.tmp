@@ -1,0 +1,89 @@
+[gd_scene load_steps=16 format=3 uid="uid://cyn4ov6newul"]
+
+[ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/third_person_controller_assets/textures/grids/Dark/texture_05.png" id="1_1e7wv"]
+[ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/third_person_controller_assets/textures/grids/Green/texture_09.png" id="2_xdpvi"]
+[ext_resource type="Texture2D" uid="uid://hu5rfl6qr2nv" path="res://assets/third_person_controller_assets/textures/grids/Red/texture_09.png" id="3_2pxo0"]
+[ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/third_person_controller_assets/textures/grids/Orange/texture_09.png" id="4_lwa11"]
+[ext_resource type="PackedScene" uid="uid://dhfjlu8rjcpgu" path="res://scenes/main_player.tscn" id="6_o2f6b"]
+[ext_resource type="PackedScene" uid="uid://10sbpxeqmsjg" path="res://scenes/enemy.tscn" id="6_tetwv"]
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="7_nwbvg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6jol2"]
+sky_top_color = Color(0, 0.513726, 0.917647, 1)
+sky_horizon_color = Color(0.764706, 0.772549, 0.784314, 1)
+
+[sub_resource type="Sky" id="Sky_c2byl"]
+sky_material = SubResource("ProceduralSkyMaterial_6jol2")
+
+[sub_resource type="Environment" id="Environment_0yh0l"]
+background_mode = 2
+sky = SubResource("Sky_c2byl")
+sdfgi_enabled = true
+fog_light_color = Color(0.784314, 1, 1, 1)
+fog_density = 0.0001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kyy6"]
+albedo_texture = ExtResource("2_xdpvi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1nr1u"]
+albedo_texture = ExtResource("3_2pxo0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo0l0"]
+albedo_texture = ExtResource("4_lwa11")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_moq27"]
+vertices = PackedVector3Array(-589.779, -45.3853, -252.597, -589.779, -45.3853, 746.403, 409.221, -45.3853, 746.403, 409.221, -45.3853, -252.597)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_radius = 0.3
+agent_max_slope = 60.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxram"]
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_1e7wv")
+
+[node name="world" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 43.6904, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0.470367, -0.875124, 0.113638, 0.169574, 0.216005, 0.961554, -88.2595, -112.989, -647.547)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0yh0l")
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.585906, 0, -0.810379, 0, 1, 0, 0.810379, 0, 0.585906, -81.5228, -20.3914, -30.6781)
+material_override = SubResource("StandardMaterial3D_8kyy6")
+use_collision = true
+size = Vector3(30, 50, 30)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.585906, 0, -0.810379, 0, 1, 0, 0.810379, 0, 0.585906, 298.262, -31.2566, 397.686)
+material_override = SubResource("StandardMaterial3D_1nr1u")
+use_collision = true
+size = Vector3(30, 30, 30)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="map"]
+transform = Transform3D(-0.201676, 0, -0.979452, 0, 1, 0, 0.979452, 0, -0.201676, -192.14, -30.8896, 291.944)
+material_override = SubResource("StandardMaterial3D_wo0l0")
+use_collision = true
+size = Vector3(30, 30, 30)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="map"]
+navigation_mesh = SubResource("NavigationMesh_moq27")
+
+[node name="floor" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.2792, -46.3853, 246.903)
+material_override = SubResource("StandardMaterial3D_xxram")
+use_collision = true
+size = Vector3(1000, 1, 1000)
+
+[node name="main_player" parent="." instance=ExtResource("6_o2f6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45.8555, 0)
+
+[node name="enemy" parent="." instance=ExtResource("6_tetwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.204022, -44.6904, -4.58051)
+script = ExtResource("7_nwbvg")
+player_path = NodePath("../main_player")

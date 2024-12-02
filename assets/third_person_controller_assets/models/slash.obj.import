@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dwkr70u4eo6ep"
+path="res://.godot/imported/slash.obj-a046511e597cefca5414f1255d719f90.mesh"
+
+[deps]
+
+files=["res://.godot/imported/slash.obj-a046511e597cefca5414f1255d719f90.mesh"]
+
+source_file="res://assets/third_person_controller_assets/models/slash.obj"
+dest_files=["res://.godot/imported/slash.obj-a046511e597cefca5414f1255d719f90.mesh", "res://.godot/imported/slash.obj-a046511e597cefca5414f1255d719f90.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

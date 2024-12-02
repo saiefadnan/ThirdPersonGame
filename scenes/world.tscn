@@ -1,0 +1,237 @@
+[gd_scene load_steps=26 format=3 uid="uid://cyn4ov6newul"]
+
+[ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/third_person_controller_assets/textures/grids/Green/texture_09.png" id="2_xdpvi"]
+[ext_resource type="Texture2D" uid="uid://hu5rfl6qr2nv" path="res://assets/third_person_controller_assets/textures/grids/Red/texture_09.png" id="3_2pxo0"]
+[ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/third_person_controller_assets/textures/grids/Orange/texture_09.png" id="4_lwa11"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="5_4txlu"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="6_cth3e"]
+[ext_resource type="PackedScene" uid="uid://10sbpxeqmsjg" path="res://scenes/enemy.tscn" id="6_jwh7j"]
+[ext_resource type="PackedScene" uid="uid://dhfjlu8rjcpgu" path="res://scenes/main_player.tscn" id="6_o2f6b"]
+[ext_resource type="Resource" path="res://terrain/data.hterrain" id="6_y38mo"]
+[ext_resource type="Texture2D" uid="uid://m4qys7xqittq" path="res://terrain/ground/Ground080_2K-JPG_AmbientOcclusion.jpg" id="8_5vy1p"]
+[ext_resource type="Texture2D" uid="uid://bmwvlvftqmayk" path="res://terrain/Rock029_2K-PNG/Rock029_2K-PNG_Color.png" id="8_kbdb8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6jol2"]
+sky_top_color = Color(0, 0.513726, 0.917647, 1)
+sky_horizon_color = Color(0.764706, 0.772549, 0.784314, 1)
+
+[sub_resource type="Sky" id="Sky_c2byl"]
+sky_material = SubResource("ProceduralSkyMaterial_6jol2")
+
+[sub_resource type="Environment" id="Environment_0yh0l"]
+background_mode = 2
+sky = SubResource("Sky_c2byl")
+sdfgi_enabled = true
+fog_light_color = Color(0.784314, 1, 1, 1)
+fog_density = 0.0001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kyy6"]
+albedo_texture = ExtResource("2_xdpvi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1nr1u"]
+albedo_texture = ExtResource("3_2pxo0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo0l0"]
+albedo_texture = ExtResource("4_lwa11")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_6jr0f"]
+vertices = PackedVector3Array(-239.134, -44.989, 21.17, -237.134, -44.989, 21.17, -237.134, -44.989, -253.83, -239.384, -44.989, 22.92, -239.134, -44.989, 21.17, -237.134, -44.989, -253.83, -589.134, -44.989, -253.83, -589.134, -44.989, 22.67, -237.134, -44.989, 21.17, -70.384, -44.989, 21.17, -70.384, -44.989, -253.83, -237.134, -44.989, -253.83, -70.384, -44.989, -253.83, -70.384, -44.989, 21.17, -68.384, -44.989, 21.17, -70.384, -44.989, -253.83, -68.384, -44.989, 21.17, -68.134, -44.989, 23.42, 409.866, -44.989, 23.42, 409.866, -44.989, -253.83, -238.384, -41.739, 22.17, -238.384, -41.739, 116.42, -69.134, -41.739, 116.42, -69.134, -41.739, 22.17, -589.134, -44.989, 115.92, -239.384, -44.989, 115.67, -239.384, -44.989, 22.92, -589.134, -44.989, 22.67, -68.134, -44.989, 115.17, 409.866, -44.989, 115.17, 409.866, -44.989, 23.42, -68.134, -44.989, 23.42, 409.866, -44.989, 115.17, -68.134, -44.989, 115.17, -68.134, -44.989, 117.17, 409.866, -44.989, 115.17, -68.134, -44.989, 117.17, -69.884, -44.989, 117.42, -69.634, -44.989, 745.17, 409.866, -44.989, 745.17, -239.384, -44.989, 117.17, -239.384, -44.989, 115.67, -589.134, -44.989, 115.92, -237.634, -44.989, 117.42, -239.384, -44.989, 117.17, -589.134, -44.989, 115.92, -589.134, -44.989, 745.17, -237.884, -44.989, 745.17, -237.884, -44.989, 745.17, -69.634, -44.989, 745.17, -69.884, -44.989, 117.42, -237.634, -44.989, 117.42)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(18, 15, 19), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(34, 33, 32), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(38, 35, 39), PackedInt32Array(42, 41, 40), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 47), PackedInt32Array(45, 47, 46), PackedInt32Array(51, 50, 48), PackedInt32Array(48, 50, 49)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxram"]
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("8_kbdb8")
+grow = true
+distance_fade_mode = 2
+
+[sub_resource type="Resource" id="Resource_mwjjx"]
+script = ExtResource("6_cth3e")
+mode = 0
+textures = [[ExtResource("8_kbdb8"), ExtResource("8_5vy1p")], [null, null]]
+
+[sub_resource type="Shader" id="Shader_h4l3h"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_always,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_refraction : filter_linear_mipmap,repeat_enable;
+uniform float refraction : hint_range(-16,16);
+uniform vec4 refraction_texture_channel;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear_mipmap;uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+varying vec3 uv1_triplanar_pos;
+uniform float uv1_blend_sharpness;
+varying vec3 uv1_power_normal;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	vec3 normal = MODEL_NORMAL_MATRIX * NORMAL;
+	TANGENT = vec3(0.0,0.0,-1.0) * abs(normal.x);
+	TANGENT+= vec3(1.0,0.0,0.0) * abs(normal.y);
+	TANGENT+= vec3(1.0,0.0,0.0) * abs(normal.z);
+	TANGENT = inverse(MODEL_NORMAL_MATRIX) * normalize(TANGENT);
+	BINORMAL = vec3(0.0,1.0,0.0) * abs(normal.x);
+	BINORMAL+= vec3(0.0,0.0,-1.0) * abs(normal.y);
+	BINORMAL+= vec3(0.0,1.0,0.0) * abs(normal.z);
+	BINORMAL = inverse(MODEL_NORMAL_MATRIX) * normalize(BINORMAL);
+	uv1_power_normal=pow(abs(normal),vec3(uv1_blend_sharpness));
+	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0f)).xyz * uv1_scale + uv1_offset + TIME * 0.01;
+	uv1_power_normal/=dot(uv1_power_normal,vec3(1.0));
+	uv1_triplanar_pos *= vec3(1.0,-1.0, 1.0);
+}
+
+
+
+
+vec4 triplanar_texture(sampler2D p_sampler,vec3 p_weights,vec3 p_triplanar_pos) {
+	vec4 samp=vec4(0.0);
+	samp+= texture(p_sampler,p_triplanar_pos.xy) * p_weights.z;
+	samp+= texture(p_sampler,p_triplanar_pos.xz) * p_weights.y;
+	samp+= texture(p_sampler,p_triplanar_pos.zy * vec2(-1.0,1.0)) * p_weights.x;
+	return samp;
+}
+
+
+void fragment() {
+	vec4 albedo_tex = triplanar_texture(texture_albedo,uv1_power_normal,uv1_triplanar_pos);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(triplanar_texture(texture_metallic,uv1_power_normal,uv1_triplanar_pos),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(triplanar_texture(texture_roughness,uv1_power_normal,uv1_triplanar_pos),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = triplanar_texture(texture_normal,uv1_power_normal,uv1_triplanar_pos).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+	vec3 unpacked_normal = NORMAL_MAP;
+	unpacked_normal.xy = unpacked_normal.xy * 2.0 - 1.0;
+	unpacked_normal.z = sqrt(max(0.0, 1.0 - dot(unpacked_normal.xy, unpacked_normal.xy)));
+	vec3 ref_normal = normalize( mix(NORMAL,TANGENT * unpacked_normal.x + BINORMAL * unpacked_normal.y + NORMAL * unpacked_normal.z,NORMAL_MAP_DEPTH) );
+	vec2 ref_ofs = SCREEN_UV - ref_normal.xy * dot(triplanar_texture(texture_refraction,uv1_power_normal,uv1_triplanar_pos),refraction_texture_channel) * refraction;
+	float ref_amount = 1.0 - albedo.a * albedo_tex.a;
+	EMISSION += textureLod(screen_texture,ref_ofs,ROUGHNESS * 8.0).rgb * ref_amount * EXPOSURE;
+	ALBEDO *= 1.0 - ref_amount;
+	ALPHA = 1.0;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_toqff"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rowxf"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_toqff")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kd243"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_toqff")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rodxb"]
+render_priority = 0
+shader = SubResource("Shader_h4l3h")
+shader_parameter/albedo = Color(0.0470588, 0.317647, 0.466667, 0.505882)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/refraction = 0.05
+shader_parameter/refraction_texture_channel = null
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.04, 0.04, 0.04)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_refraction = SubResource("NoiseTexture2D_kd243")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_rowxf")
+
+[sub_resource type="BoxMesh" id="BoxMesh_71r6v"]
+material = SubResource("ShaderMaterial_rodxb")
+size = Vector3(170, 2, 95)
+
+[node name="world" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 43.6904, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.90255, -0.364983, 0.228452, 0.42967, -0.797984, 0.422618, 0.0280528, 0.479593, 0.877042, -2.48248, -112.989, -32915.9)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0yh0l")
+
+[node name="map" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.445, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.585906, 0, -0.810379, 0, 1, 0, 0.810379, 0, 0.585906, -81.5228, -20.3914, 339.236)
+material_override = SubResource("StandardMaterial3D_8kyy6")
+use_collision = true
+size = Vector3(30, 50, 30)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.585906, 0, -0.810379, 0, 1, 0, 0.810379, 0, 0.585906, 391.211, -20.391, -343.081)
+material_override = SubResource("StandardMaterial3D_1nr1u")
+use_collision = true
+size = Vector3(30, 30, 30)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="map"]
+transform = Transform3D(-0.201676, 0, -0.979452, 0, 1, 0, 0.979452, 0, -0.201676, -192.14, -30.8896, -328.925)
+material_override = SubResource("StandardMaterial3D_wo0l0")
+use_collision = true
+size = Vector3(30, 30, 30)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.6343, 0.286331, -245.67)
+navigation_mesh = SubResource("NavigationMesh_6jr0f")
+
+[node name="floor" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.634, -45.989, 245.67)
+material_override = SubResource("StandardMaterial3D_xxram")
+use_collision = true
+size = Vector3(1000, 1, 1000)
+
+[node name="HTerrain" type="Node3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -274.404, -45.49, 0)
+script = ExtResource("5_4txlu")
+_terrain_data = ExtResource("6_y38mo")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_mwjjx")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153.788, -43.1215, 69.3366)
+mesh = SubResource("BoxMesh_71r6v")
+
+[node name="enemy" parent="." instance=ExtResource("6_jwh7j")]
+transform = Transform3D(-0.134695, 0, -0.990887, 0, 1, 0, 0.990887, 0, -0.134695, -76.4358, -44.7582, -116.167)
+player_path = NodePath("../main_player")
+
+[node name="main_player" parent="." instance=ExtResource("6_o2f6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.346, -42.9577, -124.748)
