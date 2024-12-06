@@ -7,12 +7,14 @@ extends CharacterBody3D
 @onready var heal_time = $Timer
 
 var SPEED = 0
+var paused = false
 const JUMP_VELOCITY = 4.5
 const walking = 4.0
 const running = 6.5
 const rolling = 8
 var roll = false
 var run = false
+var jump = false
 var locked = false
 var attack = false
 @export var sense_horizontal = 0.5
@@ -31,6 +33,9 @@ func _input(event):
 		rotate_y(deg_to_rad(-event.relative.x*sense_horizontal))
 		visuals.rotate_y(deg_to_rad(event.relative.x*sense_horizontal))	
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y*sense_vertical))
+	if Input.is_action_just_pressed("pause"):
+		paused = !paused
+		get_tree().paused = paused
 
 func _physics_process(delta):
 	#print(roll)
@@ -38,12 +43,15 @@ func _physics_process(delta):
 	# Add the gravity.
 	if !animation_player.is_playing():
 		locked = false
+		attack = false
 	# attack
-	if Input.is_action_just_pressed("attack1") and !locked:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if Input.is_action_just_pressed("attack1"):
+		if is_on_floor():
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 		if animation_player.current_animation!="slash2":
 			animation_player.play("slash2")
+			animation_player.seek(0.6, true)
 			locked=true
 			attack = true
 	if Input.is_action_just_pressed("kick") and !locked:
@@ -81,19 +89,26 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if Input.is_action_just_pressed("attack2") and !locked:
+	if Input.is_action_just_pressed("attack2"):
+		if is_on_floor():
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 		if animation_player.current_animation!="slash1":
 			animation_player.play("slash1")
 			locked=true
 			attack = true
+	if is_on_floor() and jump:
+		jump = false
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and !locked:
 		if animation_player.current_animation!="jump":
 			animation_player.play("jump")
-			velocity.x = direction.x 
-			velocity.z = direction.z
-			locked=true	
+			animation_player.seek(0.3, true)
+			velocity.y = 6
+			jump = true
+			locked = true	
 	if !locked:  
-		print("player", global_transform.origin)
 		if direction:
 			if roll:
 				if animation_player.current_animation!="roll" :
@@ -126,10 +141,11 @@ func _physics_process(delta):
 
 func katana_on_area_3d_body_entered(body):
 	if body.is_in_group("enemy") and attack:
-		attack = false
-		body.apply_damage(10)
+		body.apply_damage(5)
+		body.spawn_blood()
 	else:
-		print(body)
+		pass
+		#print(body)
 
 
 func apply_damage(amount: int):
@@ -150,6 +166,6 @@ func heal_on_timer_timeout():
 	if health < 100:
 		health += 10
 		health_bar.value = health
-		heal_time.start
+		heal_time.start()
 	else:
 		heal_time.stop()

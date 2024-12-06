@@ -126,7 +126,8 @@ _data = {
 script = ExtResource("1_04ort")
 
 [node name="Slash" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.0636961, 0, 0.378252)
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.0636961, 0, 0.378252)
+ignore_occlusion_culling = true
 mesh = ExtResource("1_fof4m")
 surface_material_override/0 = SubResource("ShaderMaterial_51ky5")
 

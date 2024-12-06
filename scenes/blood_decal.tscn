@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://hr7agltx1vbu"]
+
+[ext_resource type="Texture2D" uid="uid://c64oe4u1xyygk" path="res://photos/blood.png" id="1_mpsfn"]
+[ext_resource type="Script" path="res://scripts/blood_decal.gd" id="2_730cy"]
+
+[node name="blood_decal" type="Decal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -208.001, 16.676, 0)
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("1_mpsfn")
+script = ExtResource("2_730cy")

@@ -1,15 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://cyn4ov6newul"]
+[gd_scene load_steps=28 format=3 uid="uid://cyn4ov6newul"]
 
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_uofcu"]
 [ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/third_person_controller_assets/textures/grids/Green/texture_09.png" id="2_xdpvi"]
 [ext_resource type="Texture2D" uid="uid://hu5rfl6qr2nv" path="res://assets/third_person_controller_assets/textures/grids/Red/texture_09.png" id="3_2pxo0"]
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/third_person_controller_assets/textures/grids/Orange/texture_09.png" id="4_lwa11"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="5_4txlu"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="6_cth3e"]
-[ext_resource type="PackedScene" uid="uid://10sbpxeqmsjg" path="res://scenes/enemy.tscn" id="6_jwh7j"]
 [ext_resource type="PackedScene" uid="uid://dhfjlu8rjcpgu" path="res://scenes/main_player.tscn" id="6_o2f6b"]
 [ext_resource type="Resource" path="res://terrain/data.hterrain" id="6_y38mo"]
 [ext_resource type="Texture2D" uid="uid://m4qys7xqittq" path="res://terrain/ground/Ground080_2K-JPG_AmbientOcclusion.jpg" id="8_5vy1p"]
 [ext_resource type="Texture2D" uid="uid://bmwvlvftqmayk" path="res://terrain/Rock029_2K-PNG/Rock029_2K-PNG_Color.png" id="8_kbdb8"]
+[ext_resource type="PackedScene" uid="uid://bhsd4dnpmiyqf" path="res://scenes/enemy1.tscn" id="11_xs7kp"]
+[ext_resource type="AudioStream" uid="uid://f2xy68khlnri" path="res://audio/horror-thriller.mp3" id="12_36ny5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6jol2"]
 sky_top_color = Color(0, 0.513726, 0.917647, 1)
@@ -35,7 +37,7 @@ albedo_texture = ExtResource("3_2pxo0")
 albedo_texture = ExtResource("4_lwa11")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_6jr0f"]
-vertices = PackedVector3Array(-239.134, -44.989, 21.17, -237.134, -44.989, 21.17, -237.134, -44.989, -253.83, -239.384, -44.989, 22.92, -239.134, -44.989, 21.17, -237.134, -44.989, -253.83, -589.134, -44.989, -253.83, -589.134, -44.989, 22.67, -237.134, -44.989, 21.17, -70.384, -44.989, 21.17, -70.384, -44.989, -253.83, -237.134, -44.989, -253.83, -70.384, -44.989, -253.83, -70.384, -44.989, 21.17, -68.384, -44.989, 21.17, -70.384, -44.989, -253.83, -68.384, -44.989, 21.17, -68.134, -44.989, 23.42, 409.866, -44.989, 23.42, 409.866, -44.989, -253.83, -238.384, -41.739, 22.17, -238.384, -41.739, 116.42, -69.134, -41.739, 116.42, -69.134, -41.739, 22.17, -589.134, -44.989, 115.92, -239.384, -44.989, 115.67, -239.384, -44.989, 22.92, -589.134, -44.989, 22.67, -68.134, -44.989, 115.17, 409.866, -44.989, 115.17, 409.866, -44.989, 23.42, -68.134, -44.989, 23.42, 409.866, -44.989, 115.17, -68.134, -44.989, 115.17, -68.134, -44.989, 117.17, 409.866, -44.989, 115.17, -68.134, -44.989, 117.17, -69.884, -44.989, 117.42, -69.634, -44.989, 745.17, 409.866, -44.989, 745.17, -239.384, -44.989, 117.17, -239.384, -44.989, 115.67, -589.134, -44.989, 115.92, -237.634, -44.989, 117.42, -239.384, -44.989, 117.17, -589.134, -44.989, 115.92, -589.134, -44.989, 745.17, -237.884, -44.989, 745.17, -237.884, -44.989, 745.17, -69.634, -44.989, 745.17, -69.884, -44.989, 117.42, -237.634, -44.989, 117.42)
+vertices = PackedVector3Array(-239.134, -9.99545, 21.17, -237.134, -9.99545, 21.17, -237.134, -9.99545, -253.83, -239.384, -9.99545, 22.92, -239.134, -9.99545, 21.17, -237.134, -9.99545, -253.83, -589.134, -9.99545, -253.83, -589.134, -9.99545, 22.67, -237.134, -9.99545, 21.17, -70.384, -9.99545, 21.17, -70.384, -9.99545, -253.83, -237.134, -9.99545, -253.83, -70.384, -9.99545, -253.83, -70.384, -9.99545, 21.17, -68.384, -9.99545, 21.17, -70.384, -9.99545, -253.83, -68.384, -9.99545, 21.17, -68.134, -9.99545, 23.42, 409.866, -9.99545, 23.42, 409.866, -9.99545, -253.83, -238.384, -6.74545, 22.17, -238.384, -6.74545, 116.42, -69.134, -6.74545, 116.42, -69.134, -6.74545, 22.17, -589.134, -9.99545, 115.92, -239.384, -9.99545, 115.67, -239.384, -9.99545, 22.92, -589.134, -9.99545, 22.67, -68.134, -9.99545, 115.17, 409.866, -9.99545, 115.17, 409.866, -9.99545, 23.42, -68.134, -9.99545, 23.42, 409.866, -9.99545, 115.17, -68.134, -9.99545, 115.17, -68.134, -9.99545, 117.17, 409.866, -9.99545, 115.17, -68.134, -9.99545, 117.17, -69.884, -9.99545, 117.42, -69.634, -9.99545, 745.17, 409.866, -9.99545, 745.17, -239.384, -9.99545, 117.17, -239.384, -9.99545, 115.67, -589.134, -9.99545, 115.92, -237.634, -9.99545, 117.42, -239.384, -9.99545, 117.17, -589.134, -9.99545, 115.92, -589.134, -9.99545, 745.17, -237.884, -9.99545, 745.17, -237.884, -9.99545, 745.17, -69.634, -9.99545, 745.17, -69.884, -9.99545, 117.42, -237.634, -9.99545, 117.42)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(18, 15, 19), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(34, 33, 32), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(38, 35, 39), PackedInt32Array(42, 41, 40), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 47), PackedInt32Array(45, 47, 46), PackedInt32Array(51, 50, 48), PackedInt32Array(48, 50, 49)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxram"]
@@ -166,10 +168,10 @@ size = Vector3(170, 2, 95)
 
 [node name="world" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 43.6904, 0)
+script = ExtResource("1_uofcu")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.90255, -0.364983, 0.228452, 0.42967, -0.797984, 0.422618, 0.0280528, 0.479593, 0.877042, -2.48248, -112.989, -32915.9)
-light_energy = 2.0
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -197,17 +199,24 @@ use_collision = true
 size = Vector3(30, 30, 30)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.6343, 0.286331, -245.67)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.634, -35.137, -245.67)
 navigation_mesh = SubResource("NavigationMesh_6jr0f")
 
-[node name="floor" type="CSGBox3D" parent="map/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.634, -45.989, 245.67)
+[node name="main_player" parent="." instance=ExtResource("6_o2f6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.339, -45.1569, -81.4748)
+
+[node name="enemy1" parent="." instance=ExtResource("11_xs7kp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.339, -45.7605, -45.3943)
+player_path = NodePath("../main_player")
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000297546, -46.1477, 0)
 material_override = SubResource("StandardMaterial3D_xxram")
 use_collision = true
 size = Vector3(1000, 1, 1000)
 
-[node name="HTerrain" type="Node3D" parent="map/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -274.404, -45.49, 0)
+[node name="HTerrain" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -184.77, -45.7, -245.67)
 script = ExtResource("5_4txlu")
 _terrain_data = ExtResource("6_y38mo")
 chunk_size = 32
@@ -225,13 +234,14 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="map/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153.788, -43.1215, 69.3366)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.1537, -43.2802, -176.333)
 mesh = SubResource("BoxMesh_71r6v")
+skeleton = NodePath("../map/NavigationRegion3D")
 
-[node name="enemy" parent="." instance=ExtResource("6_jwh7j")]
-transform = Transform3D(-0.134695, 0, -0.990887, 0, 1, 0, 0.990887, 0, -0.134695, -76.4358, -44.7582, -116.167)
-player_path = NodePath("../main_player")
-
-[node name="main_player" parent="." instance=ExtResource("6_o2f6b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.346, -42.9577, -124.748)
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.2619)
+stream = ExtResource("12_36ny5")
+volume_db = 6.0
+unit_size = 20.0
+autoplay = true
