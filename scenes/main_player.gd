@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var animation_player = $main_visuals/hero2/AnimationPlayer
 @onready var visuals = $main_visuals
 @onready var heal_time = $Timer
+var hit_impact = preload("res://scenes/hit.tscn")
 
 var SPEED = 0
 var paused = false
@@ -151,6 +152,8 @@ func apply_damage(amount: int):
 	health_bar.value = health
 	if health<=0 :
 		die()
+	else :
+		play_hit_impact()
 	
 	
 func die():
@@ -166,3 +169,8 @@ func heal_on_timer_timeout():
 		heal_time.start()
 	else:
 		heal_time.stop()
+
+func play_hit_impact():
+	var hit = hit_impact.instantiate()
+	get_tree().current_scene.add_child(hit)
+	hit.global_transform.origin = $hit_point.global_transform.origin

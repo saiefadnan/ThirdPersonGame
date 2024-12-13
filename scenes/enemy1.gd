@@ -86,4 +86,5 @@ func left_on_area_3d_body_entered(body):
 func right_on_area_3d_body_entered(body):
 	if body.is_in_group("player") and attack:
 		body.apply_damage(10)
+
 		

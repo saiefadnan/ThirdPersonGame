@@ -65,6 +65,7 @@ alignment = 1
 [node name="play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_s80g3")
 text = "Play
@@ -73,6 +74,7 @@ text = "Play
 [node name="options" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_s80g3")
 text = "Options
@@ -81,6 +83,7 @@ text = "Options
 [node name="exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_s80g3")
 text = "Exit
@@ -122,8 +125,8 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.764706, 1, 0.745098, 1)
 theme_override_font_sizes/font_size = 35
-text = "Made with Gadot 4.2
-Developed by saief adnan"
+text = "Made with Godot 4.2
+Developed by saiefadnan078@gmail.com"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,6 +1,7 @@
 extends Control
 
 @onready var pausemenu = $"."
+@onready var pauseoptions = $"../pauseoptions"
 var pause = false
 
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +17,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
 		toggle_pause_menu()
+		pauseoptions.visible = false
 
 func toggle_pause_menu():
 	if pause:
@@ -40,9 +42,10 @@ func _on_restart_pressed():
 
 
 func _on_options_pressed():
-	get_tree().change_scene_to_file("res://scenes/pauseoptions.tscn")
+	pauseoptions.visible = true
+	pausemenu.visible = false
 
 
 func _on_quit_pressed():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/root_node.tscn")

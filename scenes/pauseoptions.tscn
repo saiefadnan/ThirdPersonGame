@@ -59,6 +59,7 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_constants/separation = 10
 alignment = 1
 
@@ -76,6 +77,7 @@ text = "Volume "
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 max_value = 1.0
 step = 0.1
 

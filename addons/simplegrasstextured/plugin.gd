@@ -147,13 +147,17 @@ func _enter_tree():
 		ProjectSettings.connect(&"settings_changed", _on_project_settings_changed)
 	# Must ensure the resource file of default_mesh.tres match the current Godot version
 	var default_mesh = load("res://addons/simplegrasstextured/default_mesh.tres")
-	if not default_mesh.has_meta(&"GodotVersion") or default_mesh.get_meta(&"GodotVersion") != Engine.get_version_info()["string"]:
-		print("SimpleGrassTextured, updating file res://addons/simplegrasstextured/default_mesh.tres")
+	if not default_mesh or not default_mesh.has_meta(&"GodotVersion") or default_mesh.get_meta(&"GodotVersion") != Engine.get_version_info()["string"]:
+		push_warning("SimpleGrassTextured, updating file res://addons/simplegrasstextured/default_mesh.tres")
 		default_mesh = null
 		var mesh_builder = load("res://addons/simplegrasstextured/default_mesh_builder.gd").new()
 		mesh_builder.rebuild_and_save_default_mesh()
 		default_mesh = load("res://addons/simplegrasstextured/default_mesh.tres")
-		default_mesh.emit_changed()
+		if default_mesh:
+			default_mesh.emit_changed()
+			print("SimpleGrassTextured, file updated successfully res://addons/simplegrasstextured/default_mesh.tres")
+		else:
+			push_error("SimpleGrassTextured, error updating file res://addons/simplegrasstextured/default_mesh.tres")
 	add_custom_type(
 		"SimpleGrassTextured",
 		"MultiMeshInstance3D",
@@ -354,10 +358,23 @@ func _forward_3d_gui_input(viewport_camera: Camera3D, event: InputEvent) -> int:
 			if not (_edit_draw or _edit_fill or _edit_erase):
 				return EditorPlugin.AFTER_GUI_INPUT_PASS
 			if event.pressed:
+				if _edit_draw:
+					get_undo_redo().create_action(_grass_selected.name + " Draw")
+				elif _edit_fill:
+					get_undo_redo().create_action(_grass_selected.name + " Fill")
+				elif _edit_erase:
+					get_undo_redo().create_action(_grass_selected.name + " Erase")
+				else:
+					get_undo_redo().create_action(_grass_selected.name)
+				get_undo_redo().add_undo_property(_grass_selected, &"baked_height_map", _grass_selected.baked_height_map)
+				get_undo_redo().add_undo_property(_grass_selected, &"multimesh", _grass_selected.multimesh)
 				_project_ray_origin = viewport_camera.project_ray_origin(event.position)
 				_project_ray_normal = viewport_camera.project_ray_normal(event.position)
 				_mouse_event = EVENT_MOUSE.EVENT_CLICK
 			else:
+				get_undo_redo().add_do_property(_grass_selected, &"baked_height_map", _grass_selected.baked_height_map)
+				get_undo_redo().add_do_property(_grass_selected, &"multimesh", _grass_selected.multimesh)
+				get_undo_redo().commit_action()
 				_time_draw = 0
 				_object_draw = null
 				_mouse_event = EVENT_MOUSE.EVENT_NONE
@@ -434,7 +451,8 @@ func _verify_global_shader_parameters():
 		})
 		if RenderingServer.global_shader_parameter_get("sgt_wind_pattern") == null:
 			RenderingServer.global_shader_parameter_add("sgt_wind_pattern", RenderingServer.GLOBAL_VAR_TYPE_SAMPLER2D, load("res://addons/simplegrasstextured/images/wind_pattern.png"))
-	add_autoload_singleton("SimpleGrass", "res://addons/simplegrasstextured/singleton.tscn")
+	if not ProjectSettings.has_setting("autoload/SimpleGrass"):
+		add_autoload_singleton("SimpleGrass", "res://addons/simplegrasstextured/singleton.tscn")
 
 
 func _enable_shaders(enable :bool) -> void:
