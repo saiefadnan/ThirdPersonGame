@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4d4il88c7vim"]
+
+[ext_resource type="PackedScene" uid="uid://byd110xdfvm0g" path="res://assets/third_person_controller_assets/models/untitled1.glb" id="1_mvq5y"]
+
+[node name="untitled1" instance=ExtResource("1_mvq5y")]

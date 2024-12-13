@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1trsxox84huj"]
+
+[ext_resource type="Texture2D" uid="uid://c64oe4u1xyygk" path="res://photos/blood.png" id="1_7ivu4"]
+[ext_resource type="Script" path="res://scripts/blood_fx.gd" id="2_g251c"]
+[ext_resource type="AudioStream" uid="uid://bof6lgbh2okfu" path="res://audio/blood.mp3" id="3_cpee7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvfec"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.968627)
+albedo_texture = ExtResource("1_7ivu4")
+billboard_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7wgm3"]
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_3q0ra"]
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_hvfec")
+emitting = false
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_7wgm3")
+draw_pass_1 = SubResource("QuadMesh_3q0ra")
+script = ExtResource("2_g251c")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_cpee7")
+autoplay = true
+max_distance = 30.0
